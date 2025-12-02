@@ -30,6 +30,7 @@ public class PandaWorld extends World
     private int level = Levels.currentLevel;
     private int lives;
     private int score;
+    private static int savedScore = 0;
 
     // Game state arrays use PLAY_* sizes (indices are in playable coordinates 0..PLAY_WIDTH-1)
     private boolean[][] bambooGrid;
@@ -48,7 +49,7 @@ public class PandaWorld extends World
         super(Levels.currentLevel * 2 + 9, Levels.currentLevel * 2 + 9, CELL_SIZE);
         level = Levels.currentLevel;
         lives = 3;
-        score = 0;
+        score = savedScore;
         PLAY_WIDTH = Levels.currentLevel * 2 + 7;
         PLAY_HEIGHT = Levels.currentLevel * 2 + 7;
         WORLD_WIDTH = PLAY_WIDTH + 2;
@@ -411,6 +412,8 @@ public class PandaWorld extends World
     {
         showText("Level: " + level + " Lives: " + lives + " Score: " + score,
                  WORLD_WIDTH / 2, 0);
+
+        savedScore = score;
     }
 
     /**
